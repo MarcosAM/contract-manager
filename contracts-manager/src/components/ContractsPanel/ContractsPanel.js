@@ -5,22 +5,22 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { getColorByState } from '../../constants/contractsStates'
 
 
-export default ({ id, expanded, setExpanded, title, details }) => {
-    const classes = useStyles();
+export default ({ id, expanded, setExpanded, title, details, state }) => {
+    const { summary, heading, white } = useStyles({ summaryColor: getColorByState(state) });
 
     const handleChange = panel => (event, isExpanded) => {
-        console.log(setExpanded)
         setExpanded(isExpanded ? panel : false);
     };
 
     return (
         <ExpansionPanel expanded={expanded === id} onChange={handleChange(id)}>
-            <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
+            <ExpansionPanelSummary className={summary}
+                expandIcon={<ExpandMoreIcon className={white} />}
             >
-                <Typography className={classes.heading}>{title}</Typography>
+                <Typography className={heading}>{title}</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
                 <Typography>
@@ -32,9 +32,16 @@ export default ({ id, expanded, setExpanded, title, details }) => {
 }
 
 const useStyles = makeStyles(theme => ({
+    summary: {
+        backgroundColor: props => props.summaryColor,
+    },
     heading: {
         fontSize: theme.typography.pxToRem(15),
         flexBasis: '33.33%',
         flexShrink: 0,
+        color: 'white'
     },
+    white: {
+        color: 'white'
+    }
 }));
