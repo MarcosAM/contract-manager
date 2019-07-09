@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { withRouter } from "react-router-dom";
+import { makeStyles } from '@material-ui/core/styles';
 import { DESCRIPTION_PATH, LIST_PATH, ADD_PATH } from '../../constants/navigation'
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -9,6 +10,8 @@ import Add from '@material-ui/icons/Add';
 
 
 const BottomN = ({ history }) => {
+    const classes = useStyles();
+
     const [value, setValue] = useState(DESCRIPTION_PATH);
 
     const handleChange = (event, newValue) => {
@@ -17,7 +20,7 @@ const BottomN = ({ history }) => {
     }
 
     return (
-        <BottomNavigation value={value} onChange={handleChange}>
+        <BottomNavigation value={value} onChange={handleChange} className={classes.bottom} >
             <BottomNavigationAction label="Description" value={DESCRIPTION_PATH} icon={<Description />} />
             <BottomNavigationAction label="List" value={LIST_PATH} icon={<List />} />
             <BottomNavigationAction label="Add" value={ADD_PATH} icon={<Add />} />
@@ -26,3 +29,9 @@ const BottomN = ({ history }) => {
 }
 
 export default withRouter(BottomN)
+
+const useStyles = makeStyles(theme => ({
+    bottom: {
+        //backgroundColor: theme.palette.primary.main
+    },
+}));
