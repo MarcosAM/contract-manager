@@ -4,13 +4,17 @@ import * as contractsActions from '../actions/contractsActions'
 import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import CustomList from '../components/CustomList'
+import { STATES } from '../constants/contractsStates'
 
 
 const ListPage = ({ contracts, loadContracts }) => {
     const { root } = useStyles();
 
     const convertContractsToListItems = (contracts) => (
-        contracts.map(({ id, title }) => ({ primary: title, secondary: id }))
+        STATES.map(state => ({
+            primary: state,
+            secondary: contracts.reduce((acc, curr) => (curr.state === state ? ++acc : acc), 0)
+        }))
     )
 
     useEffect(() => loadContracts(), [])

@@ -8,6 +8,6 @@ const getColorByState = (state) => COLORS[STATES.indexOf(state)]
 
 export {
     New, Preparing, Ready, Done,
-    ColorNew, ColorPreparing, ColorReady, ColorDone,
+    ColorNew, ColorPreparing, ColorReady, ColorDone, STATES,
     getColorByState
 }
