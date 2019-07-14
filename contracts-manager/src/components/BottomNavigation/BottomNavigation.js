@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { withRouter } from "react-router-dom";
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState } from 'react'
+import { withRouter } from "react-router-dom"
+import { makeStyles } from '@material-ui/core/styles'
 import { DESCRIPTION_PATH, LIST_PATH, ADD_PATH } from '../../constants/navigation'
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import Description from '@material-ui/icons/Description';
-import List from '@material-ui/icons/ViewList';
-import Add from '@material-ui/icons/Add';
+import BottomNavigation from '@material-ui/core/BottomNavigation'
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
+import Description from '@material-ui/icons/Description'
+import List from '@material-ui/icons/ViewList'
+import Add from '@material-ui/icons/Add'
 
 
 const BottomN = ({ history }) => {
