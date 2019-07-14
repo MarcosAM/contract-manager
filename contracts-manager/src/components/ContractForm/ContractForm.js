@@ -44,7 +44,7 @@ const AddPage = ({ handleSubmit }) => {
                 {...fieldProps}
             />
             <Button type='submit' variant="contained" color="primary" className={classes.button}>
-                Primary
+                Create
             </Button>
         </form>
     );

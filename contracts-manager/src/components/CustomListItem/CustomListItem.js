@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import ListItem from '@material-ui/core/ListItem'
 import Typography from '@material-ui/core/Typography'
 
+
 export default ({ primary, secondary }) => {
 
     const { listItem } = useStyles()
@@ -21,5 +22,5 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between'
-    },
+    }
 }));

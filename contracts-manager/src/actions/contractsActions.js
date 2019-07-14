@@ -2,7 +2,7 @@ import * as types from './actionTypes'
 import axios from 'axios'
 import { reset as resetForm } from 'redux-form'
 import Chance from 'chance'
-import { New } from '../constants/contractsStates'
+import { STATES, forwardState, Deleted } from '../constants/contractsStates'
 
 const URL = 'http://localhost:3004/contracts/'
 
@@ -17,17 +17,38 @@ export const loadContracts = () => (
     }
 )
 
-export const loadContractsSuccess = contracts => ({ type: types.CONTRACTS_LOAD_SUCCESS, contracts })
+export const loadContractsSuccess = contracts => ({
+    type: types.CONTRACTS_LOAD_SUCCESS,
+    contracts: contracts.reduce((acc, curr) => (curr.state === Deleted ? acc : [...acc, curr]), [])
+})
 
 export const createContract = contract => {
-    
-    contract.id = chance.guid()
-    contract.state = New
+    const postableContract = { ...contract, id: chance.guid(), state: STATES[0] }
 
     return dispatch => {
-        axios.post(URL, contract).then(() => {
+        axios.post(URL, postableContract).then(() => {
             dispatch(resetForm('contractForm'))
             dispatch({ type: types.CONTRACTS_CREATE_SUCCESS })
+        })
+    }
+}
+
+export const forwardContract = contract => {
+    const forwardedContract = { ...contract, state: forwardState(contract.state) }
+
+    return dispatch => {
+        axios.put(URL + forwardedContract.id, forwardedContract).then(() => {
+            dispatch(loadContracts())
+        })
+    }
+}
+
+export const deleteContract = contract => {
+    const deleteContract = { ...contract, state: Deleted }
+
+    return dispatch => {
+        axios.put(URL + deleteContract.id, deleteContract).then(() => {
+            dispatch(loadContracts())
         })
     }
 }
