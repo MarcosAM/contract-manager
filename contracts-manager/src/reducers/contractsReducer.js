@@ -1,5 +1,6 @@
 import { New, Preparing, Ready, Done } from '../constants/contractsStates'
-
+import * as types from '../actions/actionTypes'
+/*
 const INITIAL_STATE = [
     {
         id: '01',
@@ -26,9 +27,13 @@ const INITIAL_STATE = [
         details: 'Altas descrições de pedidos'
     },
 ]
+*/
 
-export default (state = INITIAL_STATE, action) => {
+
+export default (state = [], action) => {
     switch (action.type) {
+        case types.CONTRACTS_LOAD_SUCCESS:
+            return [...action.contracts]
         default:
             return state;
     }

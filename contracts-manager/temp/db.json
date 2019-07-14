@@ -1,0 +1,28 @@
+{
+  "contracts": [
+    {
+      "id": 1,
+      "state": "New",
+      "title": "Cliente 01",
+      "details": "Altas descrições de pedidos"
+    },
+    {
+      "id": 2,
+      "state": "Preparing",
+      "title": "Cliente 02",
+      "details": "Altas descrições de pedidos"
+    },
+    {
+      "id": 3,
+      "state": "Ready",
+      "title": "Cliente 03",
+      "details": "Altas descrições de pedidos"
+    },
+    {
+      "id": 4,
+      "state": "Done",
+      "title": "Cliente 04",
+      "details": "Altas descrições de pedidos"
+    }
+  ]
+}

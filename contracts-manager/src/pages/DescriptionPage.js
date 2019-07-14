@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react'
+import { bindActionCreators } from 'redux'
+import * as contractsActions from '../actions/contractsActions'
 import ContractsPanel from '../components/ContractsPanel'
 import { connect } from 'react-redux'
 
 
-const DescriptionPage = ({ contracts }) => {
+const DescriptionPage = ({ contracts, loadContracts }) => {
     const [expanded, setExpanded] = React.useState(false);
 
     const renderPanels = (contracts) => contracts.map((panel, index) => (
@@ -14,6 +16,8 @@ const DescriptionPage = ({ contracts }) => {
         />
     ))
 
+    useEffect(() => loadContracts(), [])
+
     return (
         <div>
             {renderPanels(contracts)}
@@ -23,4 +27,6 @@ const DescriptionPage = ({ contracts }) => {
 
 const mapStateToProps = ({ contracts }) => ({ contracts })
 
-export default connect(mapStateToProps)(DescriptionPage)
+const mapDispatchToProps = dispatch => (bindActionCreators(contractsActions, dispatch))
+
+export default connect(mapStateToProps, mapDispatchToProps)(DescriptionPage)
