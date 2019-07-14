@@ -1,52 +1,16 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button';
+import ContractForm from '../components/ContractForm'
+import { bindActionCreators } from 'redux'
+import * as contractsActions from '../actions/contractsActions'
+import { connect } from 'react-redux'
 
-export default () => {
-    const classes = useStyles()
 
+const AddPage = ({ createContract }) => {
     return (
-        <form className={classes.container} noValidate autoComplete='off'>
-            <TextField
-                label='Nome do Cliente'
-                className={classes.textField}
-                margin='normal'
-                variant='outlined'
-            />
-            <TextField
-                label='CPF'
-                className={classes.textField}
-                margin='normal'
-                variant='outlined'
-            />
-            <TextField
-                label='Descrição do Pedido'
-                multiline
-                className={classes.textField}
-                margin='normal'
-                variant='outlined'
-            />
-            <Button variant="contained" color="primary" className={classes.button}>
-                Primary
-            </Button>
-        </form>
-    );
+        <ContractForm onSubmit={createContract} />
+    )
 }
 
+const mapDispatchToProps = dispatch => bindActionCreators(contractsActions, dispatch)
 
-const useStyles = makeStyles(theme => ({
-    container: {
-        display: 'flex',
-        flexDirection: 'column',
-        flexWrap: 'wrap',
-    },
-    textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-    },
-    button: {
-        margin: theme.spacing(1),
-        padding: theme.spacing(2)
-    }
-}));
+export default connect(null, mapDispatchToProps)(AddPage)

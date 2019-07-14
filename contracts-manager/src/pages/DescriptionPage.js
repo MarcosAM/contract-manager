@@ -27,6 +27,6 @@ const DescriptionPage = ({ contracts, loadContracts }) => {
 
 const mapStateToProps = ({ contracts }) => ({ contracts })
 
-const mapDispatchToProps = dispatch => (bindActionCreators(contractsActions, dispatch))
+const mapDispatchToProps = dispatch => bindActionCreators(contractsActions, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(DescriptionPage)
