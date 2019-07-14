@@ -3,6 +3,7 @@ const [ColorNew, ColorPreparing, ColorReady, ColorDone] = COLORS
 
 const STATES = ['New', 'Preparing', 'Ready', 'Done', 'Deleted']
 const [New, Preparing, Ready, Done, Deleted] = STATES
+const STATES_WITHOUT_DELETE = [New, Preparing, Ready, Done]
 
 const getColorByState = state => COLORS[STATES.indexOf(state)]
 
@@ -17,6 +18,6 @@ const forwardState = state => {
 
 export {
     New, Preparing, Ready, Done, Deleted,
-    ColorNew, ColorPreparing, ColorReady, ColorDone, STATES,
+    ColorNew, ColorPreparing, ColorReady, ColorDone, STATES, STATES_WITHOUT_DELETE,
     getColorByState, forwardState
 }

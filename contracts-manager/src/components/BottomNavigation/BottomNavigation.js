@@ -32,6 +32,8 @@ export default withRouter(BottomN)
 
 const useStyles = makeStyles(theme => ({
     bottom: {
-        //backgroundColor: theme.palette.primary.main
+        position: 'fixed',
+        bottom: 0,
+        width: '100%'
     },
 }));

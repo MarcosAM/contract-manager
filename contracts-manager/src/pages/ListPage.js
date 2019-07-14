@@ -4,14 +4,14 @@ import * as contractsActions from '../actions/contractsActions'
 import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import CustomList from '../components/CustomList'
-import { STATES } from '../constants/contractsStates'
+import { STATES_WITHOUT_DELETE } from '../constants/contractsStates'
 
 
 const ListPage = ({ contracts, loadContracts }) => {
     const { root } = useStyles();
 
     const convertContractsToListItems = (contracts) => (
-        STATES.map(state => ({
+        STATES_WITHOUT_DELETE.map(state => ({
             primary: state,
             secondary: contracts.reduce((acc, curr) => (curr.state === state ? ++acc : acc), 0)
         }))
